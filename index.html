@@ -1,0 +1,2577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOKESH - WEB DEVELOPER</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1f2e;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 31, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Logo Container - Static Image */
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #00d4aa, #00e6bb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 212, 170, 0.5);
+        }
+
+        /* Logo Image Styles */
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        /* Placeholder for when no image is specified */
+        .logo-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1f2e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4aa;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+            line-height: 1.2;
+            z-index: 2;
+        }
+
+        /* Hide placeholder when image is present */
+        .logo-icon.has-image .logo-placeholder {
+            display: none;
+        }
+
+        /* Glowing border animation */
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid rgba(0, 212, 170, 0.5);
+            border-radius: 50%;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes logoGlow {
+            from {
+                box-shadow: 0 0 10px rgba(0, 212, 170, 0.3);
+            }
+            to {
+                box-shadow: 0 0 25px rgba(0, 212, 170, 0.6);
+            }
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: #00d4aa;
+        }
+
+        /* Restore underline effect for ALL navigation buttons including HOME */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #00d4aa;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: #00d4aa;
+            padding: 12px;
+            border-radius: 8px;
+            gap: 3px;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #1a1f2e;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h1 .highlight {
+            color: #00d4aa;
+            display: block;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #a0a9c0;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: #00d4aa;
+            color: #1a1f2e;
+            padding: 18px 35px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4);
+            background: #00e6bb;
+        }
+
+        /* Profile Image Section */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Profile Image Styles */
+        .profile-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 3px solid #00d4aa;
+            overflow: hidden;
+            background: rgba(0, 212, 170, 0.1);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Profile placeholder when no image */
+        .profile-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4aa;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(0, 212, 170, 0.1);
+            border-radius: 50%;
+        }
+
+        /* Hide placeholder when image is present */
+        .profile-img.has-image .profile-placeholder {
+            display: none;
+        }
+
+        /* Simple Circular Frame */
+        .main-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 340px;
+            height: 340px;
+            border: 4px solid #00d4aa;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        /* Glowing Effect */
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 360px;
+            height: 360px;
+            background: linear-gradient(45deg, rgba(0, 212, 170, 0.2), transparent, rgba(0, 212, 170, 0.2));
+            border-radius: 50%;
+            z-index: 1;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 30px rgba(0, 212, 170, 0.3);
+            }
+            to {
+                box-shadow: 0 0 60px rgba(0, 212, 170, 0.5);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background: #151a28;
+            position: relative;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .about-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 80px;
+        }
+
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .about-intro {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-intro h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00d4aa;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-intro p {
+            font-size: 1.1rem;
+            color: #a0a9c0;
+            line-height: 1.8;
+        }
+
+        .education {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .education h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00d4aa;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .education-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .education-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .education-item .institution {
+            font-size: 1rem;
+            color: #00d4aa;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .education-item .year {
+            font-size: 0.9rem;
+            color: #a0a9c0;
+        }
+
+        .skills-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .skills-category {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .skills-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 170, 0.1);
+        }
+
+        .skills-category h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00d4aa;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .skills-category .icon {
+            font-size: 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            /* Remove the problematic filter that was making logos white */
+        }
+
+        .skill-item:hover .skill-logo {
+            transform: scale(1.1);
+            /* Remove the color-changing filter on hover */
+        }
+
+        /* Add specific styling for logos that need better visibility */
+        .skill-item[data-skill="html"] .skill-logo,
+        .skill-item[data-skill="css"] .skill-logo,
+        .skill-item[data-skill="javascript"] .skill-logo {
+            /* These logos have good contrast already */
+        }
+
+        .skill-item[data-skill="github"] .skill-logo {
+            /* GitHub logo might need slight adjustment for dark theme */
+            filter: brightness(1.2);
+        }
+
+        .skill-item[data-skill="vscode"] .skill-logo {
+            /* VS Code logo should be fine as-is */
+        }
+
+        .skill-item .skill-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .skill-item .skill-level {
+            font-size: 0.85rem;
+            color: #00d4aa;
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+            position: relative;
+            background: #1a1f2e;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            color: #00d4aa;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .services-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 60px 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 170, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Website Design Icon - Overlapping Squares */
+        .icon-website {
+            position: relative;
+        }
+
+        .icon-website::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #00d4aa;
+            border-radius: 8px;
+            top: 0;
+            left: 0;
+        }
+
+        .icon-website::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #00d4aa;
+            border-radius: 8px;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 212, 170, 0.1);
+        }
+
+        .icon-website .dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00d4aa;
+            border-radius: 50%;
+            top: 25px;
+            left: 25px;
+            z-index: 2;
+        }
+
+        /* Backend Development Icon - Server/Database */
+        .icon-backend {
+            position: relative;
+        }
+
+        /* Server rack */
+        .icon-backend::before {
+            content: '';
+            position: absolute;
+            width: 45px;
+            height: 55px;
+            border: 3px solid #00d4aa;
+            border-radius: 6px;
+            top: 5px;
+            left: 17px;
+            background: rgba(0, 212, 170, 0.05);
+        }
+
+        /* Server layers */
+        .icon-backend .server-layer1 {
+            position: absolute;
+            width: 35px;
+            height: 8px;
+            background: #00d4aa;
+            border-radius: 2px;
+            top: 12px;
+            left: 22px;
+            z-index: 2;
+        }
+
+        .icon-backend .server-layer2 {
+            position: absolute;
+            width: 35px;
+            height: 8px;
+            background: rgba(0, 212, 170, 0.7);
+            border-radius: 2px;
+            top: 25px;
+            left: 22px;
+            z-index: 2;
+        }
+
+        .icon-backend .server-layer3 {
+            position: absolute;
+            width: 35px;
+            height: 8px;
+            background: rgba(0, 212, 170, 0.7);
+            border-radius: 2px;
+            top: 38px;
+            left: 22px;
+            z-index: 2;
+        }
+
+        /* Server indicators */
+        .icon-backend .indicator1 {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00d4aa;
+            border-radius: 50%;
+            top: 14px;
+            right: 25px;
+            z-index: 3;
+        }
+
+        .icon-backend .indicator2 {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00d4aa;
+            border-radius: 50%;
+            top: 27px;
+            right: 25px;
+            z-index: 3;
+        }
+
+        .icon-backend .indicator3 {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00d4aa;
+            border-radius: 50%;
+            top: 40px;
+            right: 25px;
+            z-index: 3;
+        }
+
+        /* Connection lines */
+        .icon-backend::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 2px;
+            background: #00d4aa;
+            top: 30px;
+            right: 8px;
+            z-index: 2;
+        }
+
+        /* UI Design Icon - Design Tools */
+        .icon-ui {
+            position: relative;
+        }
+
+        /* Main artboard/canvas */
+        .icon-ui::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 40px;
+            border: 3px solid #00d4aa;
+            border-radius: 6px;
+            top: 10px;
+            left: 15px;
+            background: rgba(0, 212, 170, 0.05);
+        }
+
+        /* Design elements inside canvas */
+        .icon-ui .design-element1 {
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background: #00d4aa;
+            border-radius: 2px;
+            top: 18px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        .icon-ui .design-element2 {
+            position: absolute;
+            width: 15px;
+            height: 3px;
+            background: rgba(0, 212, 170, 0.7);
+            border-radius: 2px;
+            top: 25px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        .icon-ui .design-element3 {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 2px solid #00d4aa;
+            border-radius: 2px;
+            top: 32px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        .icon-ui .design-element4 {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(0, 212, 170, 0.6);
+            border-radius: 50%;
+            top: 30px;
+            right: 20px;
+            z-index: 2;
+        }
+
+        /* Design tool cursor */
+        .icon-ui::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid #00d4aa;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            top: 20px;
+            right: 10px;
+            z-index: 3;
+            transform: rotate(-30deg);
+        }
+
+        /* Tool palette */
+        .icon-ui .palette {
+            position: absolute;
+            width: 12px;
+            height: 20px;
+            border: 2px solid rgba(0, 212, 170, 0.6);
+            border-radius: 3px;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 212, 170, 0.1);
+            z-index: 2;
+        }
+
+        .icon-ui .palette::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00d4aa;
+            border-radius: 1px;
+            top: 2px;
+            left: 2px;
+        }
+
+        .icon-ui .palette::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 212, 170, 0.7);
+            border-radius: 1px;
+            top: 8px;
+            left: 2px;
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-description {
+            font-size: 1rem;
+            color: #a0a9c0;
+            line-height: 1.8;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 120px 0;
+            background: #151a28;
+            position: relative;
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .projects-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 25px 80px rgba(0, 212, 170, 0.15);
+        }
+
+        /* Project Image Styles */
+        .project-image {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 212, 170, 0.05));
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        /* Project placeholder when no image */
+        .project-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4aa;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 212, 170, 0.05));
+        }
+
+        .project-placeholder::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2300d4aa" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        /* Hide placeholder when image is present */
+        .project-image.has-image .project-placeholder {
+            display: none;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            color: #a0a9c0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 170, 0.1);
+            color: #00d4aa;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 212, 170, 0.3);
+        }
+
+        /* Achievements Section - Slideshow Design */
+        .achievements {
+            padding: 120px 0;
+            background: #1a1f2e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievements-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .achievements-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Slideshow Container */
+        .achievements-slideshow {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Slides Container */
+        .slides-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        /* Individual Slide */
+        .achievement-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 212, 170, 0.05));
+            border: 2px solid rgba(0, 212, 170, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 212, 170, 0.1);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.6s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .achievement-slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .achievement-slide.prev {
+            transform: translateX(-100%);
+        }
+
+        /* Number Badge */
+        .achievement-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4aa, #00e6bb);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #1a1f2e;
+            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
+            z-index: 3;
+        }
+
+        .achievement-year {
+            font-size: 1rem;
+            color: #00d4aa;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .achievement-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .achievement-description {
+            font-size: 1.1rem;
+            color: #a0a9c0;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 212, 170, 0.1);
+            border: 2px solid #00d4aa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-size: 1.5rem;
+            color: #00d4aa;
+            user-select: none;
+        }
+
+        .nav-arrow:hover {
+            background: #00d4aa;
+            color: #1a1f2e;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+        }
+
+        .nav-arrow.prev {
+            left: -80px;
+        }
+
+        .nav-arrow.next {
+            right: -80px;
+        }
+
+        /* Slide Indicators Container */
+        .progress-container {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Slide Indicators */
+        .slide-indicators {
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 212, 170, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #00d4aa;
+            transform: scale(1.2);
+        }
+
+        /* Floating Background Elements */
+        .achievements::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 5%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.1), transparent);
+            border-radius: 50%;
+            animation: float1 8s ease-in-out infinite;
+        }
+
+        .achievements::after {
+            content: '';
+            position: absolute;
+            bottom: 15%;
+            right: 5%;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.08), transparent);
+            border-radius: 50%;
+            animation: float2 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float1 {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-25px) rotate(180deg);
+            }
+        }
+
+        @keyframes float2 {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-35px) rotate(-180deg);
+            }
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: #151a28;
+            position: relative;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .contact-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 80px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 170, 0.1);
+        }
+
+        .contact-item-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #00d4aa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #1a1f2e;
+        }
+
+        .contact-item h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item p {
+            color: #a0a9c0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .contact-item a {
+            color: #00d4aa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #00e6bb;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: #00d4aa;
+            color: #1a1f2e;
+            padding: 18px 35px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4);
+            background: #00e6bb;
+        }
+
+        /* Footer/Copyright Section */
+        .footer {
+            background: #0f1419;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 212, 170, 0.1);
+            border: 2px solid rgba(0, 212, 170, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4aa;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #00d4aa;
+            color: #1a1f2e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 170, 0.3);
+        }
+
+        .copyright {
+            color: #a0a9c0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .copyright a {
+            color: #00d4aa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: #00e6bb;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 212, 170, 0.1);
+            border: 2px solid #00d4aa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top:hover {
+            background: #00d4aa;
+            transform: translateY(-3px);
+        }
+
+        .scroll-top::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid #00d4aa;
+            border-right: 2px solid #00d4aa;
+            transform: rotate(-45deg);
+            transition: border-color 0.3s ease;
+        }
+
+        .scroll-top:hover::before {
+            border-color: #1a1f2e;
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-content {
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            /* Mobile Hero Layout - Profile First, Content Second */
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+                grid-template-areas: 
+                    "image"
+                    "text";
+            }
+
+            .hero-text {
+                grid-area: text;
+                order: 2;
+            }
+
+            .hero-image {
+                grid-area: image;
+                order: 1;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .profile-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .profile-img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .main-frame {
+                width: 270px;
+                height: 270px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services {
+                padding: 80px 0;
+            }
+
+            .services-title, .projects-title, .achievements-title, .contact-title, .about-title {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin-top: 60px;
+            }
+
+            .service-card {
+                padding: 40px 30px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .project-content {
+                padding: 25px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            /* Mobile Achievements */
+            .achievements-slideshow {
+                height: 400px;
+            }
+
+            .slides-container {
+                height: 350px;
+            }
+
+            .achievement-slide {
+                padding: 30px;
+            }
+
+            .achievement-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                top: 15px;
+                right: 20px;
+            }
+
+            .achievement-title {
+                font-size: 1.8rem;
+            }
+
+            .achievement-description {
+                font-size: 1rem;
+            }
+
+            .nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .nav-arrow.prev {
+                left: -60px;
+            }
+
+            .nav-arrow.next {
+                right: -60px;
+            }
+
+            .progress-container {
+                bottom: -50px;
+            }
+
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .profile-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .main-frame {
+                width: 220px;
+                height: 220px;
+            }
+
+            .services-title, .projects-title, .achievements-title, .contact-title, .about-title {
+                font-size: 2rem;
+            }
+
+            .service-card, .project-content, .contact-form, .about-intro, .education, .skills-category {
+                padding: 25px 20px;
+            }
+
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 30px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .achievement-slide {
+                padding: 25px;
+            }
+
+            .achievement-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+                top: 12px;
+                right: 15px;
+            }
+
+            .achievement-title {
+                font-size: 1.5rem;
+            }
+
+            .achievement-description {
+                font-size: 0.95rem;
+            }
+
+            .nav-arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .nav-arrow.prev {
+                left: -50px;
+            }
+
+            .nav-arrow.next {
+                right: -50px;
+            }
+
+            .contact-item {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon has-image">
+                        <!-- Replace with your actual logo image path -->
+                        <img src="logo.jpg" alt="Logo" class="logo-image">
+                        <div class="logo-placeholder">Your Logo Here</div>
+                    </div>
+                    <div class="logo-text">LOKESH</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">HOME</a></li>
+                        <li><a href="#about">ABOUT</a></li>
+                        <li><a href="#services">SERVICES</a></li>
+                        <li><a href="#projects">PROJECTS</a></li>
+                        <li><a href="#achievements">ACHIEVEMENTS</a></li>
+                        <li><a href="#contact">CONTACT</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>HI, I'M LOKESH!<br>WEB <span class="highlight">DEVELOPER</span></h1>
+                    <p>I'm a passionate web developer dedicated to building efficient, scalable, and user-centric applications. With a solid foundation in programming principles and a problem-solving mindset, I specialize in turning complex requirements into robust, maintainable code that powers seamless digital experiences.</p>
+                    <div class="hero-buttons">
+                        <a href="lokesh resume.pdf" class="btn-primary" download="Lokesh_CV.pdf" target="_blank">
+                          Download Resume ↓
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-container">
+                        <!-- Simple Circular Frame -->
+                        <div class="main-frame"></div>
+                        
+                        <!-- Profile Image with img tag -->
+                        <div class="profile-img has-image">
+                            <!-- Replace with your actual profile image path -->
+                            <img src="IMG_1507.PNG" alt="lokesh Profile" class="profile-image">
+                            <div class="profile-placeholder">Add Your Profile Image Here</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-header fade-in">
+                <span class="section-label">ABOUT ME</span>
+                <h2 class="about-title">Get to Know Me<br>& My Journey</h2>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-intro fade-in">
+                        <h3>Who AM I?</h3>
+                        <p>I'm a dedicated developer and designer with a passion for creating innovative digital solutions that tackle real-world problems. My work focuses on developing AI/ML-powered projects that combine intelligent systems with thoughtful design. I believe in the impact of clean code, human-centered design, and continuous learning to build technology that truly makes a difference.</p>
+                    </div>
+
+                    <div class="education fade-in">
+                        <h3>Education</h3>
+                        <div class="education-item">
+                            <h4>B.E-Computer science and engineering</h4>
+                            <div class="institution">P.A. college of engineering and technology</div>
+                            <div class="year">2020 - 2026 (Currently doing)</div>
+                        </div>
+                        <div class="education-item">
+                            <h4>HSC</h4>
+                            <div class="institution">Goverment Higher Secondary school</div>
+                            <div class="year">2022-compeleted</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <div class="skills-category fade-in">
+                        <h3><span class="icon">💻</span>Programming Languages</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-skill="html">
+                                <img src="html5-original.svg" alt="HTML5" class="skill-logo">
+                                <div class="skill-name">HTML</div>
+                                <div class="skill-level">Advanced</div>
+                            </div>
+                            <div class="skill-item" data-skill="css">
+                                <img src="css3-original.svg" alt="CSS3" class="skill-logo">
+                                <div class="skill-name">CSS</div>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                            <div class="skill-item" data-skill="javascript">
+                                <img src="javascript-original.svg" alt="JavaScript" class="skill-logo">
+                                <div class="skill-name">JavaScript</div>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                            <div class="skill-item" data-skill="java">
+                                <img src="java-original.svg" alt="Java" class="skill-logo">
+                                <div class="skill-name">JAVA</div>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                            <div class="skill-item" data-skill="python">
+                                <img src="python-original.svg" alt="Python" class="skill-logo">
+                                <div class="skill-name">Python</div>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                            <div class="skill-item" data-skill="sql">
+                                <img src="mysql-original.svg" alt="SQL" class="skill-logo">
+                                <div class="skill-name">SQL</div>
+                                <div class="skill-level">Beginner</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="skills-category fade-in">
+                        <h3><span class="icon">🛠️</span>Tools & Software</h3>
+                        
+                            <div class="skill-item" data-skill="vscode">
+                                <img src="vscode-original.svg" alt="VS Code" class="skill-logo">
+                                <div class="skill-name">VS Code</div>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                            <div class="skill-item" data-skill="powerpoint">
+                                <img src="Microsoft_Office_PowerPoint_(2019–present).svg" alt="PowerPoint" class="skill-logo">
+                                <div class="skill-name">PowerPoint</div>
+                                <div class="skill-level">Expert</div>
+                            </div>
+                            <div class="skill-item" data-skill="github">
+                                <img src="Github.png" alt="GitHub" class="skill-logo">
+                                <div class="skill-name">GitHub</div>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="services-header fade-in">
+                <span class="section-label">MY SERVICE</span>
+                <h2 class="services-title">Crafting stories through<br>design,code and innovation</h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon icon-website">
+                        <div class="dot"></div>
+                    </div>
+                    <h3 class="service-title">Website Design</h3>
+                    <p class="service-description">Creating modern, responsive websites with clean design principles, intuitive navigation, and optimized user experience that effectively communicates your brand message and drives engagement.</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon icon-backend">
+                        <div class="server-layer1"></div>
+                        <div class="server-layer2"></div>
+                        <div class="server-layer3"></div>
+                        <div class="indicator1"></div>
+                        <div class="indicator2"></div>
+                        <div class="indicator3"></div>
+                    </div>
+                    <h3 class="service-title">Backend Development</h3>
+                    <p class="service-description">Building robust server-side applications with secure APIs, efficient database management, and scalable architecture to power your web applications with reliable performance.</p>
+                </div>
+                <!-- 
+
+                <div class="service-card fade-in">
+                    <div class="service-icon icon-ui">
+                        <div class="design-element1"></div>
+                        <div class="design-element2"></div>
+                        <div class="design-element3"></div>
+                        <div class="design-element4"></div>
+                        <div class="palette"></div>
+                    </div>
+                   <h3 class="service-title">UI Design</h3>
+                    <p class="service-description">Crafting intuitive and visually appealing user interfaces that enhance user experience through thoughtful design, consistent visual hierarchy, and user-centered design principles.</p> -->
+                </div> 
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="projects-header fade-in">
+                <span class="section-label">MY WORK</span>
+                <h2 class="projects-title">Featured Projects<br>& Case Studies</h2>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card fade-in">
+                    <div class="project-image has-image">
+                        <!-- Replace with your actual project image path -->
+                        <img src="output.jpg" alt="Fitness Platform" class="project-img">
+                        <div class="project-placeholder">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Weather Forecasting System</h3>
+                        <p class="project-description">A weather forecasting project aims to predict and communicate atmospheric conditions for a specific location and time, utilizing scientific principles and technology to project how the weather will evolve.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">CSS3</span>
+                            <!--<span class="tech-tag">Python</span>-->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card fade-in">
+                    <div class="project-image has-image">
+                        <!-- Replace with your actual project image path -->
+                        <img src="output1.jpg" alt="Network topology" class="project-img">
+                        <div class="project-placeholder">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">calculator</h3>
+                        <p class="project-description">A calculator project typically involves developing a software or hardware application that performs mathematical calculations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Python</span>
+                           <!-- <span class="tech-tag">GNS3</span>. -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+            <!--    <div class="project-card fade-in">
+                    <div class="project-image has-image">
+                         Replace with your actual project image path 
+                        <img src="Screenshot 2025-06-22 120533.png" alt="Portfolio Website" class="project-img">
+                        <div class="project-placeholder">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p class="project-description">A creative portfolio website showcasing modern design principles with smooth animations and responsive layout.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>.    -->
+            </div>    
+        </div>
+    </section>
+
+    <!-- Achievements Section - Slideshow Design -->
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <div class="achievements-header fade-in">
+                <span class="section-label">MY JOURNEY</span>
+                <h2 class="achievements-title">Achievements &<br>Milestones</h2>
+            </div>
+
+            <div class="achievements-slideshow">
+                <!-- Navigation Arrows -->
+                <div class="nav-arrow prev" onclick="changeSlide(-1)">‹</div>
+                <div class="nav-arrow next" onclick="changeSlide(1)">›</div>
+
+                <!-- Slides Container -->
+                <div class="slides-container">
+                    <!-- Achievement Slide 1 -->
+                    <div class="achievement-slide active">
+                        <div class="achievement-number">1</div>
+                        <div class="achievement-year">2024</div>
+                        <h3 class="achievement-title">WORKSHOP</h3>
+                        <p class="achievement-description">Attended Generative AI and AWS cloud workshop</p>
+                        <p><i>-PSG College of Technology,Coimabatore-</i></p>
+                    </div>
+
+                    <!-- Achievement Slide 2 -->
+                    <div class="achievement-slide">
+                        <div class="achievement-number">2</div>
+                        <div class="achievement-year">2024</div>
+                        <h3 class="achievement-title">PAPER PRESENTATION</h3>
+                        <p class="achievement-description">Presented technical paper on federated learning in ioT system</p>
+                        <p><i>-PSG College of Technology,Coimabatore-</i></p>
+                    </div>
+
+                    <!-- Achievement Slide 3 
+                    <div class="achievement-slide">
+                        <div class="achievement-number">3</div>
+                        <div class="achievement-year">2024</div>
+                        <h3 class="achievement-title">MumbaiHacks 2024 – Guinness World Record Hackathon</h3>
+                        <p class="achievement-description">Participated in <strong>MumbaiHacks 2024</strong>, the world's largest hackathon that earned a Guinness World Record. It was an extraordinary experience to be part of such a massive global event. I developed an innovative project in the healthcare domain, contributing to impactful tech solutions addressing real-world health challenges.</p>
+                        <p><i>-Skill Tech University,Mumbai</i></p>
+                    </div>
+
+                    Achievement Slide 4 
+                    <div class="achievement-slide">
+                        <div class="achievement-number">4</div>
+                        <div class="achievement-year">2025</div>
+                        <h3 class="achievement-title">Best Innovator Award – Thiran'25</h3>
+                        <p class="achievement-description">Participated in <strong>Thiran'25</strong>, a national-level tech fest conducted by Sri Eshwar College. Our team presented a cutting-edge fitness project under the Fit-Tech AI initiative and was honored with the <strong>Best Innovator Award</strong>. The event provided a great platform to showcase our innovation in fitness technology and gain valuable recognition.</p>
+                        <p><i>-Sri Eshwar college,Coimbatore,TamilNadu</i></p>
+                    </div>
+                </div> -->
+
+                <!-- Slide Indicators -->
+                <div class="progress-container">
+                    <div class="slide-indicators">
+                        <div class="indicator active" onclick="goToSlide(0)"></div>
+                        <div class="indicator" onclick="goToSlide(1)"></div>
+                        <div class="indicator" onclick="goToSlide(2)"></div>
+                        <div class="indicator" onclick="goToSlide(3)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-header fade-in">
+                <span class="section-label">GET IN TOUCH</span>
+                <h2 class="contact-title">Let's Work Together<br>& Create Something Amazing</h2>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item fade-in" onclick="window.open('mailto:lokeshs0717@gmail.com', '_blank')">
+                        <div class="contact-item-header">
+                            <div class="contact-icon">📧</div>
+                            <h3>Email</h3>
+                        </div>
+                        <p><a href="mailto:lokeshs0717@gmail.com">lokeshs0717@gmail.com</a></p>
+                    </div>
+
+                    <div class="contact-item fade-in" onclick="window.open('tel:+91 8220264865', '_blank')">
+                        <div class="contact-item-header">
+                            <div class="contact-icon">📱</div>
+                            <h3>Phone</h3>
+                        </div>
+                        <p><a href="tel:+91 8220264865">+91 8220264865</a><br>Available</p>
+                    </div>
+
+                    <div class="contact-item fade-in">
+                        <div class="contact-item-header">
+                            <div class="contact-icon">📍</div>
+                            <h3>Location</h3>
+                        </div>
+                        <p>Dharmapuri,Tamil Nadu<br>India</p>
+                    </div>
+
+                    <div class="contact-item fade-in" onclick="window.open('https://www.linkedin.com/in/lokesh0717', '_blank')">
+                        <div class="contact-item-header">
+                            <div class="contact-icon">💼</div>
+                            <h3>LinkedIn</h3>
+                        </div>
+                        <p><a href="https://www.linkedin.com/in/lokesh0717" target="_blank">Lokesh S</a><br>Let's connect professionally</p>
+                    </div>
+
+                    <div class="contact-item fade-in" onclick="window.open('https://github.com/lokeshrelango', '_blank')">
+                        <div class="contact-item-header">
+                            <div class="contact-icon">💻</div>
+                            <h3>GitHub</h3>
+                        </div>
+                        <p><a href="https://github.com/lokeshrelango" target="_blank">Lokesh S</a><br>Check out my code repositories</p>
+                    </div>
+                </div>
+
+                <div class="contact-form fade-in">
+                    <form action="mailto:lokeshs0717@gmail.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer/Copyright Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="mailto:lokeshs0717@gmail.com" class="social-link" title="Email">
+                        📧
+                    </a>
+                    <a href="https://www.linkedin.com/in/lokesh0717/" target="_blank" class="social-link" title="LinkedIn">
+                        💼
+                    </a>
+                    <a href="https://github.com/lokeshrelango" target="_blank" class="social-link" title="GitHub">
+                        💻
+                    </a>
+                    <a href="tel:+91 8220264865" class="social-link" title="Phone">
+                        📱
+                    </a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 <a href="#home">lokesh</a>. All rights reserved.</p>
+                    <p>Designed & Developed with by <a href="#home">lokesh</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top"></div>
+
+    <script>
+        // Slideshow Variables - Fixed timing to exactly 4 seconds
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.achievement-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+        const slideDuration = 4000; // Exactly 4 seconds per slide
+        let isTransitioning = false; // Prevent overlapping transitions
+
+        // Initialize Slideshow
+        function initSlideshow() {
+            console.log('Initializing slideshow with', totalSlides, 'slides - 4 second intervals');
+            showSlide(0);
+            startAutoSlide();
+        }
+
+        // Show specific slide with proper timing control
+        function showSlide(index) {
+            if (isTransitioning) return; // Prevent overlapping transitions
+            
+            console.log('Showing slide:', index, 'at', new Date().toLocaleTimeString());
+            
+            // Ensure index is within bounds
+            if (index >= totalSlides) {
+                index = 0;
+            } else if (index < 0) {
+                index = totalSlides - 1;
+            }
+
+            isTransitioning = true;
+
+            // Remove active class from all slides and indicators
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'prev');
+                if (i !== index) {
+                    slide.style.opacity = '0';
+                    slide.style.transform = 'translateX(100%)';
+                }
+            });
+            
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+
+            // Add active class to current slide and indicator with smooth transition
+            setTimeout(() => {
+                slides[index].classList.add('active');
+                slides[index].style.opacity = '1';
+                slides[index].style.transform = 'translateX(0)';
+                indicators[index].classList.add('active');
+                
+                // Update current slide
+                currentSlide = index;
+                
+                // Allow next transition after animation completes
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 600); // Match CSS transition duration
+            }, 50);
+        }
+
+        // Change slide (for arrow navigation) - resets timer
+        function changeSlide(direction) {
+            console.log('Manual slide change by:', direction);
+            stopAutoSlide();
+            
+            let newIndex = currentSlide + direction;
+            
+            // Handle wrapping
+            if (newIndex >= totalSlides) {
+                newIndex = 0;
+            } else if (newIndex < 0) {
+                newIndex = totalSlides - 1;
+            }
+            
+            showSlide(newIndex);
+            // Restart auto slide after manual navigation
+            setTimeout(() => {
+                startAutoSlide();
+            }, 1000);
+        }
+
+        // Go to specific slide (for indicator navigation) - resets timer
+        function goToSlide(index) {
+            console.log('Going directly to slide:', index);
+            stopAutoSlide();
+            showSlide(index);
+            // Restart auto slide after manual navigation
+            setTimeout(() => {
+                startAutoSlide();
+            }, 1000);
+        }
+
+        // Start auto slide with precise 4-second timing
+        function startAutoSlide() {
+            console.log('Starting auto slide - 4 second intervals');
+            
+            // Clear any existing interval
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+            
+            autoSlideInterval = setInterval(() => {
+                if (!isTransitioning) {
+                    let nextIndex = (currentSlide + 1) % totalSlides;
+                    console.log('Auto advancing from slide', currentSlide, 'to slide', nextIndex, 'at', new Date().toLocaleTimeString());
+                    showSlide(nextIndex);
+                }
+            }, slideDuration); // Exactly 4000ms (4 seconds)
+        }
+
+        // Stop auto slide
+        function stopAutoSlide() {
+            console.log('Stopping auto slide');
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = null;
+            }
+        }
+
+        // Pause on hover - stops timer completely
+        document.querySelector('.achievements-slideshow').addEventListener('mouseenter', () => {
+            console.log('Mouse entered - pausing slideshow');
+            stopAutoSlide();
+        });
+
+        // Resume on mouse leave - restarts timer from current position
+        document.querySelector('.achievements-slideshow').addEventListener('mouseleave', () => {
+            console.log('Mouse left - resuming slideshow');
+            startAutoSlide();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(26, 31, 46, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(26, 31, 46, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            const spans = this.querySelectorAll('span');
+            
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+                spans.forEach(span => span.style.transform = 'none');
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.background = 'rgba(26, 31, 46, 0.98)';
+                nav.style.padding = '2rem';
+                nav.style.gap = '1rem';
+                
+                // Animate hamburger to X
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            }
+        });
+
+        // Parallax effect for hero elements
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroText = document.querySelector('.hero-text');
+            const heroImage = document.querySelector('.hero-image');
+            
+            if (heroText && heroImage) {
+                heroText.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroImage.style.transform = `translateY(${scrolled * -0.2}px)`;
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Scroll to top functionality
+        document.querySelector('.scroll-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Show/hide scroll to top button based on scroll position
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.style.opacity = '1';
+                scrollTop.style.visibility = 'visible';
+            } else {
+                scrollTop.style.opacity = '0';
+                scrollTop.style.visibility = 'hidden';
+            }
+        });
+
+        // Add interactive hover effects
+        document.querySelector('.profile-container').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+
+        document.querySelector('.profile-container').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+
+        // Typing effect for the main heading
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    if (text.charAt(i) === '<') {
+                        // Handle HTML tags
+                        let tagEnd = text.indexOf('>', i);
+                        element.innerHTML += text.substring(i, tagEnd + 1);
+                        i = tagEnd + 1;
+                    } else {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                    }
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', function() {
+            const heading = document.querySelector('.hero-text h1');
+            const originalText = 'HI, I\'M LOKESH!<br>WEB <span class="highlight">DEVELOPER</span>';
+            setTimeout(() => {
+                typeWriter(heading, originalText, 80);
+            }, 500);
+        });
+
+        // Add smooth reveal animation on load
+        window.addEventListener('load', function() {
+            const heroElements = document.querySelectorAll('.hero-text, .hero-image');
+            heroElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Add staggered animation delay to cards
+        document.querySelectorAll('.service-card, .project-card, .contact-item').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.2}s`;
+        });
+
+        // Add hover effects to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Icon animation on hover
+        document.querySelectorAll('.service-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Contact form submission with enhanced mailto functionality
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (name && email && subject && message) {
+                // Create mailto link with form data
+                const mailtoLink = `mailto:lokeshs0717@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                
+                // Open default email client
+                window.location.href = mailtoLink;
+                
+                // Show success message
+                alert('Opening your default email client. Thank you for reaching out!');
+                this.reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        // Initialize slideshow when page loads
+        window.addEventListener('load', function() {
+            initSlideshow();
+        });
+    </script>
+</body>
+</html>
